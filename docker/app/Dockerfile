@@ -24,8 +24,7 @@ COPY . .
 COPY --from=assets /app/public/build ./public/build
 
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
-    && composer install --optimize-autoloader \
-    && php artisan package:discover --ansi
+    && composer install --optimize-autoloader
 
 EXPOSE 9000
 CMD ["php-fpm"]

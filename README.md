@@ -12,13 +12,22 @@ cd laravel-blog-test
 cp .env.example .env
 ```
 
-### 2. Build and start containers
+### 2. Generate application key
+
+Run the command and paste the result into `APP_KEY` in `.env`:
+
+**Linux / macOS / Git Bash:**
+```bash
+echo "base64:$(openssl rand -base64 32)"
+```
+
+### 3. Build and start containers
 
 ```bash
 docker compose up -d --build
 ```
 
-### 3. Run migrations and seed
+### 4. Run migrations and seed
 
 ```bash
 docker compose exec app php artisan migrate --seed
