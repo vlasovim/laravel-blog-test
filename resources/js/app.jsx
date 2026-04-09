@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import '../css/app.css';
 import ArticleList from './pages/ArticleList';
 import ArticleShow from './pages/ArticleShow';
 import ArticleCreate from './pages/ArticleCreate';

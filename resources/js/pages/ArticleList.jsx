@@ -15,38 +15,28 @@ export default function ArticleList() {
     }, []);
 
     if (loading) return <p>Loading...</p>;
-    if (error) return <p style={{ color: 'red' }}>{error}</p>;
+    if (error) return <p className="error-text">{error}</p>;
 
     return (
         <div>
-            <h1 style={styles.heading}>Articles</h1>
+            <h1 className="page-title">Articles</h1>
             {articles.length === 0 && <p>No articles yet.</p>}
             {articles.map((article) => (
-                <article key={article.id} style={styles.card}>
-                    <h2 style={styles.title}>
-                        <Link to={`/articles/${article.id}`} style={styles.titleLink}>
+                <article key={article.id} className="card">
+                    <h2 className="article-title">
+                        <Link to={`/articles/${article.id}`} className="article-title-link">
                             {article.title}
                         </Link>
                     </h2>
-                    <p style={styles.meta}>{new Date(article.created_at).toLocaleDateString()}</p>
-                    <p style={styles.excerpt}>
+                    <p className="meta">{new Date(article.created_at).toLocaleDateString()}</p>
+                    <p className="article-excerpt">
                         {article.content.length > 200
                             ? article.content.slice(0, 200) + '…'
                             : article.content}
                     </p>
-                    <Link to={`/articles/${article.id}`} style={styles.readMore}>Read more →</Link>
+                    <Link to={`/articles/${article.id}`} className="read-more">Read more →</Link>
                 </article>
             ))}
         </div>
     );
 }
-
-const styles = {
-    heading: { fontSize: '1.75rem', marginBottom: '1.5rem', color: '#1e293b' },
-    card: { background: '#fff', borderRadius: '8px', padding: '1.5rem', marginBottom: '1.25rem', boxShadow: '0 1px 3px rgba(0,0,0,.08)' },
-    title: { margin: '0 0 .25rem', fontSize: '1.25rem' },
-    titleLink: { color: '#1e293b', textDecoration: 'none' },
-    meta: { color: '#64748b', fontSize: '.85rem', margin: '0 0 .75rem' },
-    excerpt: { color: '#475569', lineHeight: 1.6, margin: '0 0 1rem' },
-    readMore: { color: '#3b82f6', fontSize: '.9rem', textDecoration: 'none' },
-};
