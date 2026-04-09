@@ -4,5 +4,7 @@ use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\CommentController;
 use Illuminate\Support\Facades\Route;
 
-Route::apiResource('articles', ArticleController::class)->only(['index', 'store', 'show']);
+Route::get('articles', [ArticleController::class, 'index']);
+Route::post('articles', [ArticleController::class, 'store']);
+Route::get('articles/{article}', [ArticleController::class, 'show']);
 Route::post('articles/{article}/comments', [CommentController::class, 'store']);

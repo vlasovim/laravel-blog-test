@@ -13,6 +13,6 @@ class CommentController extends Controller
     {
         $comment = $article->comments()->create($request->validated());
 
-        return new CommentResource($comment);
+        return CommentResource::make($comment);
     }
 }
