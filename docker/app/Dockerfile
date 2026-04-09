@@ -1,4 +1,15 @@
-FROM php:8.3-fpm
+FROM node:22-alpine AS assets
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci
+
+COPY . .
+RUN npm run build
+
+
+FROM php:8.4-fpm
 
 WORKDIR /var/www
 
@@ -10,9 +21,11 @@ RUN apt-get update && apt-get install -y \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 COPY . .
+COPY --from=assets /app/public/build ./public/build
 
-RUN composer install --no-dev --optimize-autoloader \
-    && chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
+    && composer install --optimize-autoloader \
+    && php artisan package:discover --ansi
 
 EXPOSE 9000
 CMD ["php-fpm"]

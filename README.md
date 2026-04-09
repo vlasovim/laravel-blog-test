@@ -18,14 +18,7 @@ cp .env.example .env
 docker compose up -d --build
 ```
 
-### 3. Install frontend dependencies and build assets
-
-```bash
-docker compose exec app npm install
-docker compose exec app npm run build
-```
-
-### 4. Run migrations and seed
+### 3. Run migrations and seed
 
 ```bash
 docker compose exec app php artisan migrate --seed

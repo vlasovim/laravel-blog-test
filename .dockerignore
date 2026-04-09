@@ -1,0 +1,30 @@
+.git
+.gitignore
+.idea
+.vscode
+
+# Dependencies (installed during build)
+node_modules
+vendor
+
+# Built assets (built during Docker build)
+public/build
+public/hot
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Docker configs
+docker
+docker-compose*.yml
+
+# Tests and docs
+tests
+*.md
+phpunit.xml
+
+# OS
+.DS_Store
+Thumbs.db
