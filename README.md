@@ -32,3 +32,5 @@ docker compose up -d --build
 ```bash
 docker compose exec app php artisan migrate --seed
 ```
+
+After starting, access the application at: http://localhost:8000.
